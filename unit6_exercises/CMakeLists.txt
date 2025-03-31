@@ -26,22 +26,28 @@ include_directories(
 add_library(magic_printer_library
   src/magic_printer.cpp
 )
-
 add_library(subscriber_basic_library
   src/subscriber_basic.cpp
+)
+add_library(magic_subscriber_class_library
+  src/main_magic_subscriber_class.cpp
 )
 
 ## Create executables
 add_executable(main_magic_printer_node src/main_magic_printer.cpp)
 add_executable(main_subscriber_basic_node src/main_subscriber_basic.cpp)
+add_executable(main_magic_subscriber_class src/main_magic_subscriber_class.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(main_magic_printer_node
     magic_printer_library
     ${catkin_LIBRARIES}
 )
-
 target_link_libraries(main_subscriber_basic_node
 	subscriber_basic_library
+	${catkin_LIBRARIES}
+)
+target_link_libraries(main_magic_subscriber_class
+	magic_subscriber_class_library
 	${catkin_LIBRARIES}
 )
