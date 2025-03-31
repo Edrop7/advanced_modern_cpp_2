@@ -40,7 +40,10 @@ private:
   void laserScanCallback(const sensor_msgs::LaserScanConstPtr& msg)
   {
     // Store the laser scan data using the const pointer member variable
-    laser_scan = msg.get();
+    // laser_scan = msg.get();
+
+    // Store the laser scan data using a shared pointer
+    laser_scan = std::make_shared<sensor_msgs::LaserScan>(*msg);
 
     // Print the range at index 360 (robot front)
     // if (!laser_scan->ranges.empty())
@@ -58,7 +61,9 @@ private:
 
   // The const qualifier indicates that the pointer itself is constant
   // meaning it cannot be reassigned to point to a different object
-  const sensor_msgs::LaserScan* laser_scan;
+    //   const sensor_msgs::LaserScan* laser_scan;
+
+    std::shared_ptr<sensor_msgs::LaserScan> laser_scan;
     
   ros::Subscriber laser_scan_sub;
 };
