@@ -10,7 +10,8 @@ private:
   void laser_callback(const sensor_msgs::LaserScan::ConstPtr &laser_msg);
 
   /* DEFINE HERE THE POINTER TO THE LASER RANGES ARRAY */
-  float *last_laser_ranges;
+//   float *last_laser_ranges;
+  float *last_ten_scans[10];
 
 public:
   TurtleClass();
