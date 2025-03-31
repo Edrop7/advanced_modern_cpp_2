@@ -11,5 +11,8 @@ int main(int argc, char **argv) {
   int value_integer = 42;
   magic_printer_object.PrintInteger(value_integer);
 
+  string vallue_string = "Adventure Time!";
+  magic_printer_object.PrintString(vallue_string);
+
   return 0;
 }

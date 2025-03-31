@@ -12,6 +12,7 @@ public:
   ~MagicPrinter();
 
   void PrintInteger(const int in_value);
+  void PrintString(const string in_value);
 
 private:
   ros::NodeHandle *m_ros_node_object;
