@@ -7,6 +7,7 @@ add_compile_options(-std=c++17)
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  sensor_msgs
 )
 
 catkin_package(
@@ -26,11 +27,21 @@ add_library(magic_printer_library
   src/magic_printer.cpp
 )
 
+add_library(subscriber_basic_library
+  src/subscriber_basic.cpp
+)
+
 ## Create executables
 add_executable(main_magic_printer_node src/main_magic_printer.cpp)
+add_executable(main_subscriber_basic_node src/main_subscriber_basic.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(main_magic_printer_node
     magic_printer_library
     ${catkin_LIBRARIES}
+)
+
+target_link_libraries(main_subscriber_basic_node
+	subscriber_basic_library
+	${catkin_LIBRARIES}
 )
