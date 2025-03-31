@@ -64,6 +64,7 @@ add_executable(main_specialised_example_node src/main_specialised_example.cpp)
 add_executable(main_edge_detector_node src/main_edge_detector.cpp)
 add_executable(main_pcl2image_node src/main_pcl2image.cpp)
 add_executable(main_specialised_complete_node src/main_specialised_complete.cpp)
+add_executable(lambda_basics_node src/lambda_basics.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(main_magic_printer_node
@@ -109,5 +110,8 @@ target_link_libraries(main_pcl2image_node
 )
 target_link_libraries(main_specialised_complete_node
 	specialised_complete_library
+	${catkin_LIBRARIES}
+)
+target_link_libraries(lambda_basics_node
 	${catkin_LIBRARIES}
 )
