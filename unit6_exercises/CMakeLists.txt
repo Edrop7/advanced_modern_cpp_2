@@ -44,6 +44,9 @@ add_library(specialised_example_library
 add_library(magic_subscriber_image_edgedetector_library
   src/main_edge_detector.cpp
 )
+add_library(magic_subscriber_pcl2image_library
+  src/main_pcl2image.cpp
+)
 
 ## Create executables
 add_executable(main_magic_printer_node src/main_magic_printer.cpp)
@@ -56,6 +59,7 @@ add_executable(basic_example_u6_specialization_2_node src/examples/basic_example
 add_executable(basic_example_u6_specialization_functions_node src/examples/basic_example_u6_specialization_functions.cpp)
 add_executable(main_specialised_example_node src/main_specialised_example.cpp)
 add_executable(main_edge_detector_node src/main_edge_detector.cpp)
+add_executable(main_pcl2image_node src/main_pcl2image.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(main_magic_printer_node
@@ -93,5 +97,9 @@ target_link_libraries(main_specialised_example_node
 )
 target_link_libraries(main_edge_detector_node
 	magic_subscriber_image_edgedetector_library
+	${catkin_LIBRARIES}
+)
+target_link_libraries(main_pcl2image_node
+	magic_subscriber_pcl2image_library
 	${catkin_LIBRARIES}
 )
