@@ -13,6 +13,28 @@ public:
     laser_scan_sub = nh.subscribe("/kobuki/laser/scan", 10, &LaserSubscriberNode::laserScanCallback, this);
   }
 
+  void printClosestObstacleDistance() const {
+    float min_range = laser_scan -> ranges[0];
+    int min_index = 0;
+
+    // Find the index of the minimum range in the laser scan data
+    for (int i = 1; i < laser_scan->ranges.size(); i++) {
+      if (laser_scan->ranges[i] < min_range) {
+        min_range = laser_scan->ranges[i];
+        min_index = i;
+      }
+    }
+
+    // Calculate the angle at which the closest obstacle is found
+    float angle =
+        laser_scan->angle_min + min_index * laser_scan->angle_increment;
+
+    // Print the distance to the closest obstacle and the corresponding angle in radian
+    std::cout << "Closest obstacle distance: " << min_range
+              << ", Angle (rad): " << angle << std::endl;
+  }
+
+
 private:
   // Laser scan callback function
   void laserScanCallback(const sensor_msgs::LaserScanConstPtr& msg)
@@ -21,11 +43,17 @@ private:
     laser_scan = msg.get();
 
     // Print the range at index 360 (robot front)
-    if (!laser_scan->ranges.empty())
-    {
-      float range = laser_scan->ranges[360];
-      ROS_INFO("Range: %f", range);
+    // if (!laser_scan->ranges.empty())
+    // {
+    //   float range = laser_scan->ranges[360];
+    //   ROS_INFO("Range: %f", range);
+    // }
+
+    if (laser_scan != nullptr && !laser_scan->ranges.empty()) {
+      // Call the function to print the distance to the closest obstacle
+      printClosestObstacleDistance();
     }
+
   }
 
   // The const qualifier indicates that the pointer itself is constant
