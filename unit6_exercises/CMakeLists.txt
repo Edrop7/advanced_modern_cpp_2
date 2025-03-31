@@ -42,6 +42,9 @@ add_executable(main_subscriber_basic_node src/main_subscriber_basic.cpp)
 add_executable(magic_subscriber_class_node src/main_magic_subscriber_class.cpp)
 add_executable(magic_subscriber_function_node src/main_magic_subscriber_function.cpp)
 add_executable(main_pcl_topic_subscriber_node src/main_pcl_topic_subscriber.cpp)
+add_executable(basic_example_u6_specialization_node src/examples/basic_example_u6_specialization.cpp)
+add_executable(basic_example_u6_specialization_2_node src/examples/basic_example_u6_specialization_2.cpp)
+add_executable(basic_example_u6_specialization_functions_node src/examples/basic_example_u6_specialization_functions.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(main_magic_printer_node
@@ -63,4 +66,13 @@ target_link_libraries(magic_subscriber_function_node
 target_link_libraries(main_pcl_topic_subscriber_node
     magic_subscriber_function_library
     ${catkin_LIBRARIES}
+)
+target_link_libraries(basic_example_u6_specialization_node
+	${catkin_LIBRARIES}
+)
+target_link_libraries(basic_example_u6_specialization_2_node
+	${catkin_LIBRARIES}
+)
+target_link_libraries(basic_example_u6_specialization_functions_node
+	${catkin_LIBRARIES}
 )
