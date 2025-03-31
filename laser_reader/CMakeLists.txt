@@ -20,3 +20,6 @@ include_directories(
 
 add_executable(laser_reader src/laser_reader.cpp)
 target_link_libraries(laser_reader ${catkin_LIBRARIES})
+
+add_executable(laser_subscriber src/laser_subscriber.cpp)
+target_link_libraries(laser_subscriber ${catkin_LIBRARIES})
