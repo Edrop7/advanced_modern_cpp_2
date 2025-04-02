@@ -3,6 +3,13 @@
 #include <iostream>
 #include <exception>
 
+class WrongTurnException : public std::exception {
+    public:
+        const char* what() const throw() {
+            return "Allowed turn velocity only between -1.0 and 0.0\n";
+        }
+};
+
 int main(int argc, char **argv) {
   ros::init(argc, argv, "exercise_8_1");
 
@@ -23,13 +30,13 @@ int main(int argc, char **argv) {
         else if (turn_velocity >= -1.0 && turn_velocity <= 0.0)
             my_robot.turn(turn_velocity, 5);
         else if (turn_velocity > 0.0)
-            throw 1;
+            throw WrongTurnException();
         else if (turn_velocity < -1.0)
-            throw 1;
+            throw WrongTurnException();
         else
             throw 'x';
-    } catch (int n) {
-        std::cout << "Enter turn velocity between -1.0 and 0.0" << std::endl;
+    } catch (WrongTurnException e) {
+        std::cout << e.what();
     } catch (...) {
         std::cout << "Please enter a decimal number." << std::endl;
         std::cin.clear();
