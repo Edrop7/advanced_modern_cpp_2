@@ -9,6 +9,7 @@ project(exercises_unit_8)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  robot_commander
 )
 
 ## System dependencies are found with CMake's conventions
@@ -202,3 +203,6 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(validate_user_input src/validate_user_input.cpp)
+target_link_libraries(validate_user_input ${catkin_LIBRARIES})
